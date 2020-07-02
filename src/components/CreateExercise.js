@@ -30,9 +30,9 @@ class CreateExercise extends React.Component {
   }
 
   handleChange = (e) => {
-    const { value } = e.target;
+    const { value, name } = e.target;
     this.setState({
-      username: value,
+      [name]: value,
     });
   };
 
@@ -54,7 +54,7 @@ class CreateExercise extends React.Component {
       date,
     };
 
-    console.log(exercise);
+    // console.log(exercise);
     axios
       .post("http://localhost:5000/exercises/add", exercise)
       .then((res) => console.log(res.data));
@@ -71,6 +71,7 @@ class CreateExercise extends React.Component {
           <div className="form-group">
             <label>Username:</label>
             <select
+              name="username"
               ref="userInput"
               className="form-control"
               value={username}
@@ -89,23 +90,25 @@ class CreateExercise extends React.Component {
           <div className="form-group">
             <label>Description:</label>
             <input
+              name="description"
               type="text"
               className="form-control"
               value={description}
               onChange={this.handleChange}
               required
-            ></input>
+            />
           </div>
 
           <div className="form-group">
             <label>Duration(minutes):</label>
             <input
+              name="duration"
               type="text"
               className="form-control"
               value={duration}
               onChange={this.handleChange}
               required
-            ></input>
+            />
           </div>
 
           <div className="form-group">

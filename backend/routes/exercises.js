@@ -37,7 +37,7 @@ router.route("/add").post((req, res) => {
 
 //Update exercise
 router.route("/update/:id").post((req, res) => {
-  const { id } = req.body.params;
+  const { id } = req.params;
   const { username, description } = req.body;
   const duration = Number(req.body.duration);
   const date = Date.parse(req.body.date);

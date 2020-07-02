@@ -8,7 +8,7 @@ const Exercise = ({ exercise, handleDelete }) => (
     <td>{exercise.duration}</td>
     <td>{exercise.date.substring(0, 10)}</td>
     <td>
-      <Link to={"/edit" + exercise._id}>Edit</Link> |{" "}
+      <Link to={"/edit/" + exercise._id}>Edit</Link> |{" "}
       <a href="#" onClick={() => handleDelete(exercise._id)}>
         Delete
       </a>

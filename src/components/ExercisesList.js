@@ -18,7 +18,7 @@ class ExercisesList extends React.Component {
         exercises: response.data,
       });
       // .catch((err) => console.log(err));
-      console.log(this.state.exercises);
+      // console.log(this.state.exercises);
     });
   }
 

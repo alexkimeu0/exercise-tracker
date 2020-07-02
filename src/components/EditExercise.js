@@ -28,7 +28,8 @@ class EditExercise extends React.Component {
           description,
           duration,
           date: new Date(date),
-        }).catch((error) => console.log(error));
+        });
+        // .catch((error) => console.log(error));
       });
 
     axios.get("http://localhost:5000/users").then((response) => {
@@ -41,9 +42,9 @@ class EditExercise extends React.Component {
   }
 
   handleChange = (e) => {
-    const { value } = e.target;
+    const { value, name } = e.target;
     this.setState({
-      username: value,
+      [name]: value,
     });
   };
 
@@ -68,7 +69,7 @@ class EditExercise extends React.Component {
     console.log(exercise);
     axios
       .post(
-        "http://localhost:5000/exercises/update" + this.props.match.params.id,
+        "http://localhost:5000/exercises/update/" + this.props.match.params.id,
         exercise
       )
       .then((res) => console.log(res.data));
@@ -85,6 +86,7 @@ class EditExercise extends React.Component {
           <div className="form-group">
             <label>Username:</label>
             <select
+              name="username"
               ref="userInput"
               className="form-control"
               value={username}
@@ -103,23 +105,25 @@ class EditExercise extends React.Component {
           <div className="form-group">
             <label>Description:</label>
             <input
+              name="description"
               type="text"
               className="form-control"
               value={description}
               onChange={this.handleChange}
               required
-            ></input>
+            />
           </div>
 
           <div className="form-group">
             <label>Duration(minutes):</label>
             <input
+              name="duration"
               type="text"
               className="form-control"
               value={duration}
               onChange={this.handleChange}
               required
-            ></input>
+            />
           </div>
 
           <div className="form-group">
