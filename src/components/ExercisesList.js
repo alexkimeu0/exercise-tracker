@@ -51,7 +51,7 @@ class ExercisesList extends React.Component {
     return (
       <div>
         <h3>Exercises</h3>
-        <table className="table">
+        <table className="table table-bordered">
           <thead className="thead-light">
             <tr>
               <th>Username</th>
