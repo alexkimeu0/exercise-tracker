@@ -1,20 +1,24 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+import Exercise from "./Exercise";
 import axios from "axios";
 
 class ExercisesList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { exercises: [] };
+    this.state = {
+      exercises: [],
+    };
   }
 
   componentDidMount() {
     axios.get("http://localhost:5000/exercises/").then((response) => {
       this.setState({
         exercises: response.data,
-      }).catch((error) => console.log(error));
+      });
+      // .catch((err) => console.log(err));
+      console.log(this.state.exercises);
     });
   }
 
@@ -31,12 +35,13 @@ class ExercisesList extends React.Component {
 
   exerciseList = () => {
     const { exercises } = this.state;
+
     return exercises.map((exercise) => {
       return (
         <Exercise
           key={exercise._id}
           exercise={exercise}
-          delete={this.handleDelete}
+          handleDelete={this.handleDelete}
         />
       );
     });
@@ -56,7 +61,7 @@ class ExercisesList extends React.Component {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>{this.exerciseList}</tbody>
+          <tbody>{this.exerciseList()}</tbody>
         </table>
       </div>
     );
